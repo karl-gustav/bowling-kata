@@ -16,5 +16,9 @@ describe('service', function() {
 		it('should be defined', inject(function(bowling){
 			expect(bowling).toBeDefined()
 		}))
+		
+		it('should have a roll method', inject(function(bowling){
+			expect(bowling.roll).toBeDefined()
+		}));
 	})
 });
