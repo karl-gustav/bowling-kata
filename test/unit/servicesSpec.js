@@ -24,5 +24,10 @@ describe('service', function() {
 		it('should return the score 0 on a gutter set', inject(function(bowling){
 			expect(bowling.roll([0,0])).toBe(0)
 		}));
+		
+		it('should store the previus set [0,1] and give a total score with the new set [0,1] of 2', inject(function(bowling){
+			bowling.roll([0,1])
+			expect(bowling.roll([0,1])).toBe(2)
+		}));
 	})
 });
