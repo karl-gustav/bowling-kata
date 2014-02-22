@@ -16,8 +16,17 @@ mod.service('bowling', function(){
 
 		sets.push(setArray)
 
-		return sets.sum(function(aSet){
-			return aSet.sum()
+		return sets.sum(function(aSet, index, array){
+			var sum = aSet.sum(),
+				nextSet = array[index+1]
+
+			if (sum == 10){ //spare
+				if (nextSet){
+					sum += nextSet[0]
+				}
+			}
+
+			return sum
 		})
 	}
 
