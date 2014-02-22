@@ -35,5 +35,11 @@ describe('service', function() {
 				bowling.roll([1,2,3])
 			}).toThrow(new Error())
 		}));
+
+		it('should only allow an array as argument', inject(function(bowling){
+			expect(function(){
+				bowling.roll({})
+			}).toThrow(new Error("Illegal argument, the set can only be an array!"))
+		}));
 	})
 });
