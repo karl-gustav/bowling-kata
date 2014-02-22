@@ -54,5 +54,10 @@ describe('service', function() {
 				bowling.roll([1,2,3])
 			}).not.toThrow()
 		}));
+
+		it('should add the points from the next throw if a spare is thown', inject(function(bowling){
+			bowling.roll([5,5])
+			expect(bowling.roll([5,0])).toBe(20)
+		}));
 	})
 });
