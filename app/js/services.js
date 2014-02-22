@@ -12,7 +12,10 @@ mod.value('version', '0.1');
 mod.service('bowling', function(){
 	var sets = []
 	this.roll = function(setArray){
+		if(setArray.length != 2) throw new Error()
+
 		sets.push(setArray)
+
 		return sets.sum(function(aSet){
 			return aSet.sum()
 		})
