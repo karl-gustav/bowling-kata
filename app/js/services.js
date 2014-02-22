@@ -5,5 +5,10 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+var mod = angular.module('myApp.services', [])
+	
+mod.value('version', '0.1');
+
+mod.service('bowling', function(){
+	
+})
