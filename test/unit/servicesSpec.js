@@ -11,4 +11,10 @@ describe('service', function() {
 			expect(version).toEqual('0.1');
 		}));
 	});
+
+	describe('bowling service', function(){
+		it('should be defined', inject(function(bowling){
+			expect(bowling).toBeDefined()
+		}))
+	})
 });
