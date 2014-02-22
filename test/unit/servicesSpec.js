@@ -20,5 +20,9 @@ describe('service', function() {
 		it('should have a roll method', inject(function(bowling){
 			expect(bowling.roll).toBeDefined()
 		}));
+		
+		it('should return the score 0 on a gutter set', inject(function(bowling){
+			expect(bowling.roll([0,0])).toBe(0)
+		}));
 	})
 });
