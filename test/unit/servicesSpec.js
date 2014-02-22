@@ -39,7 +39,7 @@ describe('service', function() {
 		it('should only allow two balls in a set', inject(function(bowling){
 			expect(function(){
 				bowling.roll([1,2,3])
-			}).toThrow(new Error(""))
+			}).toThrow(new Error("Only thow balls is allowed in a set, unless it's the 10. set!"))
 		}));
 
 		it('should only allow an array as argument', inject(function(bowling){
