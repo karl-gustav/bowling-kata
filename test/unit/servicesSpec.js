@@ -29,5 +29,11 @@ describe('service', function() {
 			bowling.roll([0,1])
 			expect(bowling.roll([0,1])).toBe(2)
 		}));
+		
+		it('should only allow two balls in a set', inject(function(bowling){
+			expect(function(){
+				bowling.roll([1,2,3])
+			}).toThrow(new Error())
+		}));
 	})
 });
