@@ -12,6 +12,12 @@ describe('service', function() {
 		}));
 	});
 
+	function rollMultiple(numberOfRolls, setArray, bowling){
+		for(var i = 0; i < numberOfRolls; i++){
+			bowling.roll(setArray)
+		}
+	}
+
 	describe('bowling service', function(){
 		it('should be defined', inject(function(bowling){
 			expect(bowling).toBeDefined()
@@ -33,13 +39,20 @@ describe('service', function() {
 		it('should only allow two balls in a set', inject(function(bowling){
 			expect(function(){
 				bowling.roll([1,2,3])
-			}).toThrow(new Error())
+			}).toThrow(new Error(""))
 		}));
 
 		it('should only allow an array as argument', inject(function(bowling){
 			expect(function(){
 				bowling.roll({})
 			}).toThrow(new Error("Illegal argument, the set can only be an array!"))
+		}));
+		
+		it('should allow 3 balls on the last set(10th set)', inject(function(bowling){
+			rollMultiple(9, [0,0], bowling)
+			expect(function(){
+				bowling.roll([1,2,3])
+			}).not.toThrow()
 		}));
 	})
 });
