@@ -28,7 +28,7 @@ mod.service('bowling', function(){
 				throw new Error("You are only alowed to have 3 balls in a set if it's the 10. set!")
 			}
 		} else {
-			if(setArray.length != 2) throw new Error()
+			if(setArray.length != 2) throw new Error("Only thow balls is allowed in a set, unless it's the 10. set!")
 		}
 	}
 })
