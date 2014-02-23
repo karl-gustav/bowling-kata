@@ -20,9 +20,9 @@ mod.service('bowling', function(){
 			var sum = aSet.sum(),
 				nextSet = array[index+1]
 
-			if (sum == 10 && aSet.length > 1){ //spare
+			if (isSpare(aSet)){
 				if (nextSet) sum += nextSet[0]
-			} else if (sum == 10 && aSet.length == 1){ //strike
+			} else if (isStrike(aSet)){
 				if (nextSet) sum += nextSet[0] + nextSet[1]
 			}
 
@@ -46,5 +46,13 @@ mod.service('bowling', function(){
 				}
 			}
 		}
+	}
+
+	function isSpare(aSet){
+		return aSet.sum() == 10 && aSet.length > 1
+	}
+	
+	function isStrike(aSet){
+		return aSet.sum() == 10 && aSet.length == 1
 	}
 })
