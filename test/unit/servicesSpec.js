@@ -59,5 +59,10 @@ describe('service', function() {
 			bowling.roll([5,5])
 			expect(bowling.roll([5,0])).toBe(20)
 		}));
+
+		it('should add the points from both throws in the next set if a strike is thrown', inject(function(bowling){
+			bowling.roll([10])
+			expect(bowling.roll([1,1])).toBe(14)
+		}));
 	})
 });
