@@ -69,5 +69,20 @@ describe('service', function() {
 			bowling.roll([10])
 			expect(bowling.roll([10])).toBe(20)
 		}));
+		
+		it('should give a score of 300 on a perfect game', inject(function(bowling){
+			rollMultiple(9, [10], bowling)
+			expect(bowling.roll([10,10,10])).toBe(300)
+		}));
+
+		it('should give a score of 90 on a game with only [9,0] as the throws', inject(function(bowling){
+			rollMultiple(9, [9,0], bowling)
+			expect(bowling.roll([9,0])).toBe(90)
+		}));
+		
+		it('should give a score of 150 if only spares is thown', inject(function(bowling){
+			rollMultiple(9, [5,5], bowling)
+			expect(bowling.roll([5,5,5])).toBe(150)
+		}));
 	})
 });
