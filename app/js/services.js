@@ -10,25 +10,25 @@ var mod = angular.module('myApp.services', [])
 mod.value('version', '0.1');
 
 mod.service('bowling', function(){
-	var sets = []
-	this.roll = function(setArray){
-		validateSet(setArray)
+	var frames = []
+	this.roll = function(frameArray){
+		validateframe(frameArray)
 
-		sets.push(setArray)
+		frames.push(frameArray)
 
-		return sets.sum(function(aSet, index, array){
-			var sum = aSet.sum(),
-				nextSet = array[index+1],
-				nextNextSet = array[index+2]
+		return frames.sum(function(aframe, index, array){
+			var sum = aframe.sum(),
+				nextframe = array[index+1],
+				nextNextframe = array[index+2]
 			
-			if (isSpare(aSet)){
-				if (nextSet) sum += nextSet[0]
-			} else if (isStrike(aSet)){
-				if (nextSet){
-					if (nextSet.length > 1){
-						sum += nextSet[0] + nextSet[1]
-					} else if (nextNextSet){
-						sum += nextSet[0] + nextNextSet[0]
+			if (isSpare(aframe)){
+				if (nextframe) sum += nextframe[0]
+			} else if (isStrike(aframe)){
+				if (nextframe){
+					if (nextframe.length > 1){
+						sum += nextframe[0] + nextframe[1]
+					} else if (nextNextframe){
+						sum += nextframe[0] + nextNextframe[0]
 					}
 				}
 			}
@@ -37,29 +37,29 @@ mod.service('bowling', function(){
 		})
 	}
 
-	function validateSet(setArray){
-		if( ! angular.isArray(setArray) ) throw new Error("Illegal argument, the set can only be an array!")
+	function validateframe(frameArray){
+		if( ! angular.isArray(frameArray) ) throw new Error("Illegal argument, the frame can only be an array!")
 
-		if(sets.length == 9){
-			if( ! (setArray.length == 2 || setArray.length == 3)){
-				throw new Error("You are only alowed to have 3 balls in a set if it's the 10. set!")
+		if(frames.length == 9){
+			if( ! (frameArray.length == 2 || frameArray.length == 3)){
+				throw new Error("You are only alowed to have 3 balls in a frame if it's the 10. frame!")
 			}
 		} else {
-			if(setArray.length != 2){
-				if(setArray.length == 1 && setArray[0] == 10){
+			if(frameArray.length != 2){
+				if(frameArray.length == 1 && frameArray[0] == 10){
 					return
 				} else {
-					throw new Error("Only thow balls is allowed in a set, unless it's the 10. set!")
+					throw new Error("Only thow balls is allowed in a frame, unless it's the 10. frame!")
 				}
 			}
 		}
 	}
 
-	function isSpare(aSet){
-		return aSet.sum() == 10 && aSet.length > 1
+	function isSpare(aframe){
+		return aframe.sum() == 10 && aframe.length > 1
 	}
 	
-	function isStrike(aSet){
-		return aSet.sum() == 10 && aSet.length == 1
+	function isStrike(aframe){
+		return aframe.sum() == 10 && aframe.length == 1
 	}
 })

@@ -12,9 +12,9 @@ describe('service', function() {
 		}));
 	});
 
-	function rollMultiple(numberOfRolls, setArray, bowling){
+	function rollMultiple(numberOfRolls, frameArray, bowling){
 		for(var i = 0; i < numberOfRolls; i++){
-			bowling.roll(setArray)
+			bowling.roll(frameArray)
 		}
 	}
 
@@ -27,28 +27,28 @@ describe('service', function() {
 			expect(bowling.roll).toBeDefined()
 		}));
 		
-		it('should return the score 0 on a gutter set', inject(function(bowling){
+		it('should return the score 0 on a gutter frame', inject(function(bowling){
 			expect(bowling.roll([0,0])).toBe(0)
 		}));
 		
-		it('should store the previus set [0,1] and give a total score with the new set [0,1] of 2', inject(function(bowling){
+		it('should store the previus frame [0,1] and give a total score with the new frame [0,1] of 2', inject(function(bowling){
 			bowling.roll([0,1])
 			expect(bowling.roll([0,1])).toBe(2)
 		}));
 		
-		it('should only allow two balls in a set', inject(function(bowling){
+		it('should only allow two balls in a frame', inject(function(bowling){
 			expect(function(){
 				bowling.roll([1,2,3])
-			}).toThrow(new Error("Only thow balls is allowed in a set, unless it's the 10. set!"))
+			}).toThrow(new Error("Only thow balls is allowed in a frame, unless it's the 10. frame!"))
 		}));
 
 		it('should only allow an array as argument', inject(function(bowling){
 			expect(function(){
 				bowling.roll({})
-			}).toThrow(new Error("Illegal argument, the set can only be an array!"))
+			}).toThrow(new Error("Illegal argument, the frame can only be an array!"))
 		}));
 		
-		it('should allow 3 balls on the last set(10th set)', inject(function(bowling){
+		it('should allow 3 balls on the last frame(10th frame)', inject(function(bowling){
 			rollMultiple(9, [0,0], bowling)
 			expect(function(){
 				bowling.roll([1,2,3])
@@ -60,7 +60,7 @@ describe('service', function() {
 			expect(bowling.roll([5,0])).toBe(20)
 		}));
 
-		it('should add the points from both throws in the next set if a strike is thrown', inject(function(bowling){
+		it('should add the points from both throws in the next frame if a strike is thrown', inject(function(bowling){
 			bowling.roll([10])
 			expect(bowling.roll([1,1])).toBe(14)
 		}));
