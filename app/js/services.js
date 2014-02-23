@@ -18,12 +18,19 @@ mod.service('bowling', function(){
 
 		return sets.sum(function(aSet, index, array){
 			var sum = aSet.sum(),
-				nextSet = array[index+1]
-
+				nextSet = array[index+1],
+				nextNextSet = array[index+2]
+			
 			if (isSpare(aSet)){
 				if (nextSet) sum += nextSet[0]
 			} else if (isStrike(aSet)){
-				if (nextSet) sum += nextSet[0] + nextSet[1]
+				if (nextSet){
+					if (nextSet.length > 1){
+						sum += nextSet[0] + nextSet[1]
+					} else if (nextNextSet){
+						sum += nextSet[0] + nextNextSet[0]
+					}
+				}
 			}
 
 			return sum
