@@ -32,12 +32,19 @@ mod.service('bowling', function(){
 
 	function validateSet(setArray){
 		if( ! angular.isArray(setArray) ) throw new Error("Illegal argument, the set can only be an array!")
+
 		if(sets.length == 9){
 			if( ! (setArray.length == 2 || setArray.length == 3)){
 				throw new Error("You are only alowed to have 3 balls in a set if it's the 10. set!")
 			}
 		} else {
-			if(setArray.length != 2) throw new Error("Only thow balls is allowed in a set, unless it's the 10. set!")
+			if(setArray.length != 2){
+				if(setArray.length == 1 && setArray[0] == 10){
+					return
+				} else {
+					throw new Error("Only thow balls is allowed in a set, unless it's the 10. set!")
+				}
+			}
 		}
 	}
 })
