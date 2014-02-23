@@ -20,10 +20,10 @@ mod.service('bowling', function(){
 			var sum = aSet.sum(),
 				nextSet = array[index+1]
 
-			if (sum == 10){ //spare
-				if (nextSet){
-					sum += nextSet[0]
-				}
+			if (sum == 10 && aSet.length > 1){ //spare
+				if (nextSet) sum += nextSet[0]
+			} else if (sum == 10 && aSet.length == 1){ //strike
+				if (nextSet) sum += nextSet[0] + nextSet[1]
 			}
 
 			return sum
